@@ -1,0 +1,25 @@
+<div *ngIf="isLoadingPlaces" class="alert alert-primary mt-2 text-center">
+  <h6>Cargando</h6>
+  <span>Espere por favor...</span>
+</div>
+
+<ul class="list-group mt-2" *ngIf="places.length > 0">
+  <li
+    *ngFor="let p of places"
+    [class.active]="p.id === selectedId"
+    class="list-group-item list-group-item-action pointer active"
+    (click)="flyTo(p)"
+  >
+    <h6>{{ p.text }}</h6>
+    <p>{{ p.place_name }}</p>
+    <button
+      class="btn btn-sm"
+      [ngClass]="
+        p.id === selectedId ? 'btn-outline-light' : 'btn-outline-primary'
+      "
+      (click)="getDirections(p)"
+    >
+      Direcciones
+    </button>
+  </li>
+</ul>
